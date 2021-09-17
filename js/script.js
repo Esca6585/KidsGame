@@ -4,14 +4,13 @@ var max = 10;
 var randNumber1 = getRandomInt(min, max);
 var randNumber2 = getRandomInt(min, max);
 
-var sum = randNumber1 + randNumber2;
+var operatorChange = document.getElementById('operatorChange');
 
 var number1 = document.getElementById('number1');
 var number2 = document.getElementById('number2');
 
-var operatorChange = document.getElementById('operatorChange');
-
 var operator = document.getElementById('operator');
+
 
 var result = document.getElementById('result');
 
@@ -30,9 +29,7 @@ var randNumbers = [];
 
 var randOrder = getRandomInt(0, length);
 
-
-changeOperator(operatorChange, operator, randNumber1, randNumber2, sum);
-
+var sum = sumFunc(randNumber1, randNumber2);
 
 pushArray(randNumbers, min, max);
 
@@ -98,7 +95,7 @@ function showNumbers(answers, randNumbers)
     }
 }
 
-function changeOperator(operatorChange, operator, randNumber1, randNumber2, sum)
+function changeOperator(operatorChange, operator, randNumber1, randNumber2)
 {
     operatorChange.addEventListener('change', function(){
         operator.textContent = this.value;
@@ -113,8 +110,7 @@ function changeOperator(operatorChange, operator, randNumber1, randNumber2, sum)
             sum = randNumber1 / randNumber2
         }
 
-        console.log(this.value);
-        console.log(sum);
+        return sum;
     });
 }
 
@@ -158,4 +154,8 @@ function reloadFunc()
 function timeFunction(delay)
 {
     setTimeout(function(){ reloadFunc(); }, delay);
+}
+
+function sumFunc(randNumber1, randNumber2){
+    return randNumber1 + randNumber2;
 }
